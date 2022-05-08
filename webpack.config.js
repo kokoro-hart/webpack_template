@@ -27,15 +27,10 @@ module.exports = {
       },
       {
         test: /\.(jpe?g|png|gif|svg)$/i,
-        use: [
-          {
-            loader: 'file-loader',
-            options: {
-              esModule: false,
-              name: 'img/[name].[ext]'
-            }
-          }
-        ]
+        type: 'asset/resource',
+        generator: {
+          filename: 'img/[name][ext]'
+        },
       }
     ]
   },
