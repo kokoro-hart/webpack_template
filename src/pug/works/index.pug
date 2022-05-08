@@ -1,0 +1,14 @@
+extends ../modules/_template
+block page
+  - var page = 'works';
+
+block main
+  main.l-container
+    section.p-first-view
+      .p-first-view__content
+        h1.p-first-view__heading Works Page!!
+        p.p-first-view__text This site is built with webpack and Pug
+      picture.p-first-view__picture
+        source.p-first-view__img(srcset="/img/sample.webp", type="image/webp")
+        img.p-first-view__img(src="/img/sample.png", alt="キービジュアル")
+

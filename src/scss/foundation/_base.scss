@@ -57,9 +57,10 @@ input {
 }
 
 main {
-  display: block;
+  flex: 1;
   width: 100%;
   z-index: map-get($layer, main);
+  overflow-x: hidden;
 }
 
 a {

@@ -1,0 +1,12 @@
+//- 各ページのテンプレートとなるファイルです。個別ページを作る際はこれをextendsします。
+include ../data/_page-data
+
+block page
+doctype html
+html(lang="ja")
+  include ./_head
+  body
+    .l-page-wrapper
+      include ./_header
+      block main
+      include ./_footer

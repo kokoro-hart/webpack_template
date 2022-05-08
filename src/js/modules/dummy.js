@@ -1,3 +1,4 @@
+// babel動作確認用
 export default () => {
   const obj = {
     a: 1,
@@ -7,5 +8,5 @@ export default () => {
     ...obj,
     c: 3
   }
-  console.log('this is module by my.js', newObj);
+  console.log('this is module by dummy.js', newObj);
 }

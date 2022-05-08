@@ -5,10 +5,35 @@
 
 .p-first-view {
   width: 100%;
+  @include mq(md) {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+}
+
+.p-first-view__content {
+  @include mq(md) {
+    width: calc(40% - 5% / 2);
+  }
 }
 
 .p-first-view__heading {
   color: $color-accent;
-  @include fz(20, 40);
+  @include fz(40, 60);
   font-weight: 700;
+  white-space: nowrap;
+}
+
+.p-first-view__text {
+  margin-top: 4px;
+  font-weight: 700;
+  @include fz(16, 18);
+}
+
+.p-first-view__picture {
+  display: block;
+  @include mq(md) {
+    width: calc(60% - 5% / 2);
+  }
 }

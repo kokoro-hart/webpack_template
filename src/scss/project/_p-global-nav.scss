@@ -3,18 +3,16 @@
 /* project .p-global-nav
    ----------------------------------------------------------------- */
 
-.p-global-nav {
-
-}
-
 .p-global-nav__list {
-
+  display: flex;
 }
 
 .p-global-nav__item {
-
+  margin-right: 20px;
 }
 
 .p-global-nav__link {
-  @include fz(14, 16);
+  display: block;
+  @include fz(18, 20);
+  font-weight: 700;
 }

@@ -4,5 +4,14 @@
    ----------------------------------------------------------------- */
 
 .p-header {
-  color: $color-primary;
+  color: $color-base;
+  background-color: $color-accent;
+}
+
+.p-header__inner {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
