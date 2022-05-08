@@ -1,0 +1,14 @@
+@use "../global" as *;
+
+/* project .p-first-view
+   ----------------------------------------------------------------- */
+
+.p-first-view {
+  width: 100%;
+}
+
+.p-first-view__heading {
+  color: $color-accent;
+  @include fz(20, 40);
+  font-weight: 700;
+}

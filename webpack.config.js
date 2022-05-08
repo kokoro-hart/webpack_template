@@ -4,18 +4,61 @@ const globule = require("globule");
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 
+// 本番環境のときはsoucemapを出力させない設定
+const enabledSourceMap = process.env.NODE_ENV !== "production";
+
 const app = {
   entry: './src/js/main.js',
   output: {
-    path: path.resolve(__dirname, './dist'),
+    path: path.resolve(__dirname, 'dist'),
     filename: "./js/bundle.js",
+  },
+  devServer: {
+    //ルートディレクトリの指定
+    static: {
+      directory: path.join(__dirname, "dist")
+    },
+    compress: true,
+    // ブラウザを自動的に起動
+    open: true,
+    // ホットリロード
+    hot: true,
+    // ポート番号指定
+    port: 3000,
+    // 監視するフォルダ
+    watchFiles: {
+      paths: ["src/**/*"],
+    },
+    // bundle先ファイルを出力する
+    devMiddleware: {
+      writeToDisk: true,
+    }
   },
   module: {
     rules: [
       {
-        // .cssファイルがあれば
-        test: /\.css/,
-        // css-loaderを利用する
+        //babelの設定
+        test: /\.js/,
+        exclude: /node_modules/,
+        use: [
+          {
+            loader: 'babel-loader',
+            options: {
+              presets: [
+                [
+                  '@babel/preset-env',
+                  {
+                    'targets':'> 0.25%, not dead',
+                  }
+                ]
+              ]
+            }
+          },
+        ]
+      },
+      {
+        //Sassの設定
+        test: /\.(sa|sc|c)ss$/,
         // 注意: loaderは下から順に適用されていく
         use: [
           {
@@ -23,7 +66,32 @@ const app = {
           },
           {
             loader: 'css-loader',
-          }
+            options: {
+              url: false,
+              sourceMap: enabledSourceMap,
+              importLoaders: 2
+            }
+          },
+          {
+            loader: "postcss-loader",
+            options: {
+              // production モードでなければソースマップを有効に
+              sourceMap: enabledSourceMap,
+              postcssOptions: {
+                // ベンダープレフィックスを自動付与
+                plugins: [require("autoprefixer")({ grid: true })]
+              }
+            }
+          },
+          {
+            loader: 'sass-loader',
+            options: {
+              // dart-sass を優先
+              implementation: require("sass"),
+              //  production モードでなければソースマップを有効に
+              sourceMap: enabledSourceMap
+            }
+          },
         ]
       },
       {
@@ -33,7 +101,8 @@ const app = {
           filename: 'img/[name][ext]'
         },
       },
-      {// Pugの設定
+      {
+        // Pugの設定
         test: /\.pug$/,
         use: [
           {
@@ -53,15 +122,6 @@ const app = {
     new MiniCssExtractPlugin({
       filename:'./css/style.css',
     }),
-    // //htmlのビルド
-    // new HtmlWebpackPlugin({
-    //   filename: 'index.html',
-    //   template: './src/templates/index.pug',
-    // }),
-    // new HtmlWebpackPlugin({
-    //   filename: 'about.html',
-    //   template: './src/templates/about.pug',
-    // }),
     new CleanWebpackPlugin(),
   ]
 }

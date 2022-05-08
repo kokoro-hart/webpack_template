@@ -1,0 +1,38 @@
+
+
+// @use "foundation";
+// @use "layout";
+// @use "component";
+// @use "project";
+// @use "utility";
+
+
+
+/* Foundation
+   ----------------------------------------------------------------- */
+@use "foundation/ress";
+@use "foundation/base";
+
+/* Layout (prefix: l- )
+   ----------------------------------------------------------------- */
+@use "layout/l-header";
+@use "layout/l-footer";
+@use "layout/l-container";
+
+/* Component (prefix: c- )
+   ----------------------------------------------------------------- */
+@use "component/c-button-primary";
+
+
+/* Project (prefix: p- )
+   ----------------------------------------------------------------- */
+@use "project/p-header";
+@use "project/p-footer";
+@use "project/p-global-nav";
+@use "project/p-first-view";
+
+
+/* Utitlity (prefix: u- )
+   ----------------------------------------------------------------- */
+@use "utility/u-hidden";
+

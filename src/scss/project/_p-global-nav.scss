@@ -1,0 +1,20 @@
+@use "../global" as *;
+
+/* project .p-global-nav
+   ----------------------------------------------------------------- */
+
+.p-global-nav {
+
+}
+
+.p-global-nav__list {
+
+}
+
+.p-global-nav__item {
+
+}
+
+.p-global-nav__link {
+  @include fz(14, 16);
+}

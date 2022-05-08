@@ -1,0 +1,25 @@
+@use "../global" as *;
+
+/* project .u-hidden
+   ----------------------------------------------------------------- */
+// <p class="u-hidden-md-up">md値より広い幅で非表示</p>
+// <p class="u-hidden-lg-down">lg値より狭い幅で非表示</p>
+
+@each $bp in map-keys($screen) {
+  .u-hidden-#{$bp}-up {
+    @include mq($bp, min) {
+      display: none;
+    }
+  }
+
+  .u-hidden-#{$bp}-down {
+    @include mq($bp) {
+      display: none;
+    }
+  }
+}
+
+//スクリーンリーダー向け隠しコンテンツ
+.u-hidden {
+  @include visually-hidden();
+}
