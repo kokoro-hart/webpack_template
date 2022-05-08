@@ -24,6 +24,18 @@ module.exports = {
             loader: 'css-loader',
           }
         ]
+      },
+      {
+        test: /\.(jpe?g|png|gif|svg)$/i,
+        use: [
+          {
+            loader: 'file-loader',
+            options: {
+              esModule: false,
+              name: 'img/[name].[ext]'
+            }
+          }
+        ]
       }
     ]
   },
