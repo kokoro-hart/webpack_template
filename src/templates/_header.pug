@@ -1,0 +1,21 @@
+doctype html
+
+block variables 
+  - var title = ' Webpack test App byPug';
+
+html(lang="ja")
+  head
+    meta(charset="UTF-8")
+    meta(http-equiv="X-UA-Compatible", content="IE=edge")
+    meta(name="viewport", content="width=device-width, initial-scale=1.0")
+    title #{title}
+  body 
+    nav 
+      ul 
+        li 
+          a(href="./index.html") topへ
+        li 
+          a(href="./about.html") aboutへ
+        li 
+          a(href="./works.html") worksへ
+    block content
