@@ -1,4 +1,4 @@
-# webpackによるPug + DartSass + VanillaJsテンプレート
+# Pug + DartSass(FROCSS) + VanillaJsテンプレート
 
 ## 開発開始時
 ```
