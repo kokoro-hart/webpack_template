@@ -2,7 +2,7 @@
 
 ## 開発開始時
 ```
-$ npm run start
+$ npm run server
 ```
 - http://localhost:3000 でローカルサーバーが起動。
 - Pug,Sassのコンパイル、babelによるjsのトランスパイル、画像圧縮.etc
@@ -11,12 +11,11 @@ $ npm run start
 ## 納品時
 
 ```
-$ npm run prod 
+$ npm run build
 ```
 - distフォルダに納品時ファイルを生成
 
 ## その他コマンド
 ```
 $ npm run dev // 開発環境として出力
-$ npm run lint // ESLintとPrettierで整形
 ```
