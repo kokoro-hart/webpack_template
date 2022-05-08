@@ -95,11 +95,22 @@ const app = {
         ]
       },
       {
-        test: /\.(jpe?g|png|gif|svg)$/i,
+        //画像の設定
+        test: /\.(jpe?g|png|gif|svg|webp)$/i,
         type: 'asset/resource',
         generator: {
-          filename: 'img/[name][ext]'
+          filename: 'img/[name][ext]',
         },
+        use: [
+          {
+            loader: 'image-webpack-loader',
+            options: {
+              webp: {
+                quality: 75
+              }
+            }
+          }
+        ]
       },
       {
         // Pugの設定
@@ -119,25 +130,31 @@ const app = {
     ]
   },
   plugins: [
+    new CleanWebpackPlugin(),
     new MiniCssExtractPlugin({
       filename:'./css/style.css',
     }),
-    new CleanWebpackPlugin(),
-  ]
+  ],
+  //source-map タイプのソースマップを出力
+  //devtool: "source-map",
+  // node_modules を監視（watch）対象から除外
+  watchOptions: {
+    ignored: /node_modules/ 
+  }
 }
 //srcフォルダからpngを探す
-const templates = globule.find("./src/templates/*.pug", {
-  ignore: ["./src/templates/_*.pug"]
+const templates = globule.find("./src/pug/**/*.pug", {
+  ignore: ["./src/pug/**/_*.pug"]
 });
 
 //pugファイルがある分だけhtmlに変換する
 templates.forEach((template) => {
-  const fileName = template.replace("./src/templates/", "").replace(".pug", ".html");
+  const fileName = template.replace("./src/pug/", "").replace(".pug", ".html");
   app.plugins.push(
     new HtmlWebpackPlugin({
       filename: `${fileName}`,
       template: template,
-      //inject: false, //false, head, body, trueから選べる
+      inject: true, //false, 'head', 'body', trueから選べる
       minify: false //本番環境でも圧縮しない
     }),
   );
