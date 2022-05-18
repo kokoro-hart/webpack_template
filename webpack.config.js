@@ -8,6 +8,7 @@ const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const enabledSourceMap = process.env.NODE_ENV !== "production";
 
 const app = {
+  //エントリーポイント
   entry: './src/js/main.js',
   output: {
     path: path.resolve(__dirname, 'dist'),
@@ -37,13 +38,8 @@ const app = {
   module: {
     rules: [
       {
-        test: /\.ts$/,
-        use: "ts-loader",
-        exclude: /node_modules/
-      },
-      {
         //babelの設定
-        test: /\.js/,
+        test: /\.(ts|js)$/,
         exclude: /node_modules/,
         use: [
           {
@@ -53,9 +49,13 @@ const app = {
                 [
                   '@babel/preset-env',
                   {
-                    'targets':'> 0.25%, not dead',
+                    'targets': '> 0.25%, not dead',
+                    //必要なポリフィル分だけ自動で出力させる場合
+                    // useBuiltIns: "usage",
+                    // corejs: { version: "3.22.5", proposals: true }
                   }
-                ]
+                ],
+                ['@babel/preset-typescript']
               ]
             }
           },
@@ -64,7 +64,6 @@ const app = {
       {
         //Sassの設定
         test: /\.(sa|sc|c)ss$/,
-        // 注意: loaderは下から順に適用されていく
         use: [
           {
             loader: MiniCssExtractPlugin.loader,
@@ -134,14 +133,19 @@ const app = {
       }
     ]
   },
+  resolve: {
+    // import 文で .ts ファイルを解決
+    extensions: [".ts", ".js"]
+  },
   plugins: [
     new CleanWebpackPlugin(),
     new MiniCssExtractPlugin({
       filename:'./css/style.css',
     }),
   ],
-  //source-map タイプのソースマップを出力
+  //source-map タイプのソースマップを出力する場合
   //devtool: "source-map",
+
   // node_modules を監視（watch）対象から除外
   watchOptions: {
     ignored: /node_modules/ 
@@ -159,8 +163,8 @@ templates.forEach((template) => {
     new HtmlWebpackPlugin({
       filename: `${fileName}`,
       template: template,
-      inject: true, //false, 'head', 'body', trueから選べる
-      minify: false //本番環境でも圧縮しない
+      inject: true, 
+      minify: false //本番環境でも圧縮するか
     }),
   );
 });
