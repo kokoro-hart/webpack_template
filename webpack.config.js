@@ -37,6 +37,11 @@ const app = {
   module: {
     rules: [
       {
+        test: /\.ts$/,
+        use: "ts-loader",
+        exclude: /node_modules/
+      },
+      {
         //babelの設定
         test: /\.js/,
         exclude: /node_modules/,
