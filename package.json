@@ -7,8 +7,8 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "NODE_ENV=production webpack --mode production",
     "dev": "webpack --mode development",
-    "watch": "webpack --mode development --watch",
-    "server": "webpack serve --mode development"
+    "server": "webpack serve --mode development",
+    "lint": "eslint --cache --fix ./src/js/ && prettier --write ./src/"
   },
   "repository": {
     "type": "git",
