@@ -1,4 +1,4 @@
-# Pug + DartSass(FROCSS) + TypeScriptテンプレート
+# Pug + DartSass(FROCSS) + TypeScript開発環境
 
 ## 開発開始時
 ```
