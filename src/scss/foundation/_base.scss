@@ -154,40 +154,7 @@ textarea {
   font: inherit;
 }
 
-//フォーカス時のoutline指定
-[type="checkbox"]:focus + label,
-textarea:focus,
-input:focus,
-a:focus,
-button:focus {
-  outline: 2px solid $color-accent;
-}
-
 :focus:not(:focus-visible),
 :focus:not(:focus-visible) + label {
   outline: 0; //キーボード操作"以外"でフォーカスされた際はoutlineを消す
-}
-
-//メインコンテンツにスキップするリンク
-.skip-link {
-  position: absolute;
-  top: 10px;
-  left: 10px;
-  @include fz(14);
-  @include lh(1);
-  font-weight: 600;
-}
-
-//フォーカスされていないときスキップリンクは隠す
-.skip-link:not(:focus) {
-  position: absolute;
-  margin: -1px;
-  padding: 0;
-  width: 1px;
-  height: 1px;
-  white-space: nowrap;
-  border: 0;
-  overflow: hidden;
-  clip: rect(1px, 1px, 1px, 1px);
-  clip-path: inset(50%);
 }
